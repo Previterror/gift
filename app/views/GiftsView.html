@@ -3,11 +3,11 @@
         <!-- SECTION - Sidebar -->
         <div class="col-3 bg-success">
             <H1>Gifts bruh</H1>
-            <form>
+            <form id="post-gift" onsubmit="app.GiftsController.postGift()">
                 <label class="d-block" for="tag">Tag</label>
-                <input name="tag" type="text">
+                <input name="tag" type="text" id="tag">
                 <label class="d-block" for="url">URL</label>
-                <input name="url" type="text">
+                <input name="url" type="text" id="url">
                 <button class="btn btn-secondary">Submit</button>
             </form>
             <hr />

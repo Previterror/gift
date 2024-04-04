@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { Gift } from "../models/Gift.js";
 import { giftsService } from "../services/GiftsService.js";
+import { getFormData } from "../utils/FormHandler.js";
 import { Pop } from "../utils/Pop.js";
 import { setHTML } from "../utils/Writer.js";
 
@@ -35,6 +36,20 @@ export class GiftsController {
         } catch (error) {
             Pop.toast('Could not open gift', 'error')
             console.error('Could not open gift', error)
+        }
+    }
+
+    async postGift() {
+        try {
+            event.preventDefault()
+            console.log('Attempting to post gift')
+            const form = event.target
+            const giftData = getFormData(form)
+            console.log('gift data', giftData);
+            await giftsService.postGift(giftData)
+        } catch (error) {
+            console.error(error)
+            Pop.toast("Couldn't post Gift", 'error')
         }
     }
 
