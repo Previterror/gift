@@ -1,5 +1,7 @@
 import { AppState } from "../AppState.js"
+import { GiftsController } from "../controllers/GiftsController.js"
 import { Gift } from "../models/Gift.js"
+import { setHTML } from "../utils/Writer.js"
 import { api } from "./AxiosService.js"
 
 
@@ -9,13 +11,25 @@ class GiftsService {
 
     async toggleOpen(id) {
         let giftToToggle = AppState.myGifts.find(gift => gift.id == id)
+        let indexToRemove = AppState.myGifts.findIndex(gift => gift.id == id)
+
+
         giftToToggle.opened = !giftToToggle.opened
+        console.log("fitdy: ", giftToToggle)
         const response = await api.put(`api/gifts/${id}`, giftToToggle)
         let openedGift = new Gift(response.data)
         // console.log('opening gift response', openedGift)
         // AppState.myGifts.push(openedGift)
+
         giftToToggle = openedGift
-        AppState.emit('myGifts')
+        console.log("fitdasdasdy: ", giftToToggle)
+        // AppState.emit('myGifts')
+        document.getElementById(id).outerHTML = `<img src="${openedGift.url}" alt="Img" class="card-image p-1" id="">`
+    }
+
+    redrawOpened(id) {
+
+
     }
 
 

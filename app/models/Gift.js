@@ -12,7 +12,7 @@ export class Gift {
 
         return `
 <div class="col-3 card" onclick="app.GiftsController.toggleOpen('${this.id}')">
-    <img src="${this.url}" alt="Img" class="card-image p-1">
+    <img src="${this.url}" alt="Img" class="card-image p-1" id="${this.id}">
     <p class="card-text text-center">${this.tag}</p>
 </div>
 `}
