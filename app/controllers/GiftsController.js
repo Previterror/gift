@@ -29,4 +29,13 @@ export class GiftsController {
         setHTML('gift-list', myGiftList)
     }
 
+    async toggleOpen(id) {
+        try {
+            await giftsService.toggleOpen(id)
+        } catch (error) {
+            Pop.toast('Could not open gift', 'error')
+            console.error('Could not open gift', error)
+        }
+    }
+
 }

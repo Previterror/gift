@@ -7,6 +7,14 @@ import { api } from "./AxiosService.js"
 
 class GiftsService {
 
+    async toggleOpen(id) {
+        const giftToToggle = AppState.myGifts.find(gift => gift.id == id)
+        giftToToggle.opened = !giftToToggle.opened
+        const response = await api.put(`api/gifts/${id}`, giftToToggle)
+        console.log('opening gift response', response.data)
+        AppState.emit('myGifts')
+    }
+
 
     async getGifts() {
         const response = await api.get('api/gifts')
